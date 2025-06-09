@@ -34,6 +34,11 @@ export const helpList:HelpListType = [
         desc: '反色图片'
       },
       {
+        icon: 158,
+        title: '#颜色滤镜#xxx',
+        desc: '颜色滤镜图片'
+      },
+      {
         icon: 159,
         title: '#旋转 xx',
         desc: '旋转图片xx度'

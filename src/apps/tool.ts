@@ -210,6 +210,34 @@ export const invert = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetools)
   event: 'message'
 })
 
+export const color_mask = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetools))?(?:颜色滤镜)(?:\s*(\S+))?$/i, async (e: Message) => {
+  try {
+    const [, color] = e.msg.match(color_mask.reg)!
+    const image = await utils.get_image(e, getType)
+    const image_buffer = image && image.length > 0 ? image[0].image : null
+
+    if (!image_buffer) {
+      return await e.reply('请发送图片', { reply: true })
+    }
+    if (!color) {
+      return await e.reply('请输入正确的颜色格式,如: [#ff0000]')
+    }
+    const hexColorRegex = /^#[0-9A-Fa-f]{6}$/i
+    if (!hexColorRegex.test(color)) {
+      return await e.reply('颜色格式无效, 请输入标准的6位16进制颜色代码: \n例如: #ff0000 (红色)')
+    }
+    const reslut = imageTool.image_color_mask(image_buffer as Buffer, color)
+    await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+  } catch (error) {
+    logger.error(error)
+    await e.reply(`[${Version.Plugin_AliasName}]颜色滤镜图片失败: ${(error as Error).message}`)
+  }
+}, {
+  name: '柠糖图片操作:颜色滤镜',
+  priority: -Infinity,
+  event: 'message'
+})
+
 export const merge_horizontal = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetools))?(?:水平拼接)(?:图片)?$/i, async (e: Message) => {
   try {
     const images = await utils.get_image(e, getType)
