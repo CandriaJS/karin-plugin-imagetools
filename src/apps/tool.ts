@@ -359,8 +359,9 @@ export const gif_split = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetoo
   event: 'message'
 })
 
-export const gif_merge = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetools))?(?:gif)?(?:合并|拼接)$/i, async (e: Message) => {
+export const gif_merge = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetools))?(?:gif)?(?:合并|拼接|合成)(?:\s*(\S+))?$/i, async (e: Message) => {
   try {
+    const [, duration] = e.msg.match(gif_merge.reg)!
     const images = await utils.get_image(e, getType)
     if (!images || images.length < 2) {
       return await e.reply('请发送至少两张图片进行拼接', { reply: true })
@@ -368,7 +369,7 @@ export const gif_merge = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetoo
     const image_buffers = await Promise.all(
       images.map(img => img.image)
     )
-    const reslut = imageTool.gif_merge(image_buffers as Buffer[])
+    const reslut = imageTool.gif_merge(image_buffers as Buffer[], Number(duration))
     await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
   } catch (error) {
     logger.error(error)
