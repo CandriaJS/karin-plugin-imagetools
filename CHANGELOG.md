@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.0.1...v1.1.0) (2025-06-10)
+
+
+### ✨ 新功能
+
+* **imagetools:** 添加颜色滤镜功能 ([4e3a0f8](https://github.com/CandriaJS/karin-plugin-imagetools/commit/4e3a0f8c36577962a8d07428f04edefbb5f223fb))
+
 ## [1.0.1](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.0.0...v1.0.1) (2025-06-08)
 
 
