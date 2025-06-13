@@ -1,4 +1,4 @@
-import karin, { buffer, Elements, ImageElement, Message } from 'node-karin'
+import karin, { base64, buffer, Elements, ImageElement, Message } from 'node-karin'
 
 import { ImageInfoType } from '@/types'
 
@@ -91,32 +91,27 @@ export async function get_image (
    * 处理引用消息中的图片
    */
   if (quotedImages.length > 0) {
-    for (const item of quotedImages) {
-      if (type === 'url') {
-        tasks.push(
-          Promise.resolve({
+    const quotedImagesPromises = quotedImages.map(async (item) => {
+      switch (type) {
+        case 'buffer':
+          return {
+            userId: item.userId,
+            image: await buffer(item.file)
+          }
+        case 'base64':
+          return {
+            userId: item.userId,
+            image: await base64(item.file)
+          }
+        case 'url':
+        default:
+          return {
             userId: item.userId,
             image: item.file.toString()
-          })
-        )
-      } else if (type === 'buffer') {
-        const buf = await buffer(item.file)
-        tasks.push(
-          Promise.resolve({
-            userId: item.userId,
-            image: buf
-          })
-        )
-      } else {
-        const buf = await buffer(item.file)
-        tasks.push(
-          Promise.resolve({
-            userId: item.userId,
-            image: buf.toString('base64')
-          })
-        )
+          }
       }
-    }
+    })
+    tasks.push(...quotedImagesPromises)
   }
 
   /**
@@ -124,23 +119,23 @@ export async function get_image (
    */
   if (imagesInMessage.length > 0) {
     const imagePromises = imagesInMessage.map(async (item) => {
-      if (type === 'url') {
-        return {
-          userId: item.userId,
-          image: item.file.toString()
-        }
-      } else if (type === 'buffer') {
-        const buf = await buffer(item.file)
-        return {
-          userId: item.userId,
-          image: buf
-        }
-      } else {
-        const buf = await buffer(item.file)
-        return {
-          userId: item.userId,
-          image: buf.toString('base64')
-        }
+      switch (type) {
+        case 'buffer':
+          return {
+            userId: item.userId,
+            image: await buffer(item.file)
+          }
+        case 'base64':
+          return {
+            userId: item.userId,
+            image: await base64(item.file)
+          }
+        case 'url':
+        default:
+          return {
+            userId: item.userId,
+            image: item.file.toString()
+          }
       }
     })
     tasks.push(...imagePromises)
