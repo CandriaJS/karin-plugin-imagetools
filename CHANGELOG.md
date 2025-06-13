@@ -1,5 +1,17 @@
 # 变更日志
 
+## [1.1.1](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.1.0...v1.1.1) (2025-06-13)
+
+
+### 🐛 错误修复
+
+* 更新日志截图 ([06afeab](https://github.com/CandriaJS/karin-plugin-imagetools/commit/06afeab203adc0b3a02b3e6cc5dedb3c1fa320f9))
+
+
+### ♻️ 代码重构
+
+* **models:** 优化图片处理逻辑 ([9079fda](https://github.com/CandriaJS/karin-plugin-imagetools/commit/9079fdaf1fab39aa5ffca04d600d51ece49a67fb))
+
 ## [1.1.0](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.0.1...v1.1.0) (2025-06-10)
 
 
@@ -21,4 +33,3 @@
 ### ✨ 新功能
 
 * 增加柠糖图片操作插件 ([7696343](https://github.com/CandriaJS/karin-plugin-imagetools/commit/7696343e6af5630de70ef06794104f3bdda04aa7))
-
