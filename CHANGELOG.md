@@ -1,5 +1,17 @@
 # 变更日志
 
+## [1.2.0](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.1.1...v1.2.0) (2025-06-15)
+
+
+### ✨ 新功能
+
+* **tool:** 添加图片抠图功能 ([d2f2452](https://github.com/CandriaJS/karin-plugin-imagetools/commit/d2f2452ba19d00d54937da16c20a3fc37a8e9c9b))
+
+
+### 🎨 代码样式
+
+* 优化布局样式 ([f43708e](https://github.com/CandriaJS/karin-plugin-imagetools/commit/f43708e89544c45337f2d7636d15e44f1f90d334))
+
 ## [1.1.1](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.1.0...v1.1.1) (2025-06-13)
 
 
