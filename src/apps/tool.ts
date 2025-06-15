@@ -2,10 +2,12 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 
 import * as imageTool from '@candriajs/image-tool'
+import { Client as GClient } from '@gradio/client'
 import AdmZip from 'adm-zip'
 import type { Client, GfsDirStat, GfsFileStat } from 'icqq'
 import karin, { common, exists, karinPathTemp, logger, Message, segment } from 'node-karin'
 
+import { Config } from '@/common'
 import { utils } from '@/models'
 import { Version } from '@/root'
 
@@ -234,6 +236,45 @@ export const color_mask = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imageto
   }
 }, {
   name: '柠糖图片操作:颜色滤镜',
+  priority: -Infinity,
+  event: 'message'
+})
+
+export const image_matting = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetools))?(?:抠图)(?:图片)?$/i, async (e: Message) => {
+  try {
+    const image = await utils.get_image(e, getType)
+    if (!image) return await e.reply('请发送图片', { reply: true })
+    await e.reply('开始处理图片中, 请稍后...')
+    const base_url = Config.server.url ? Config.server.url : 'https://skytnt-anime-remove-background.hf.space'
+    const client = await GClient.connect(base_url.replace(/\/+$/, ''))
+    const result = await client.predict('/rmbg_fn', { img: image[0].image })
+    if (Array.isArray(result.data)) {
+      const replyMessage = [
+        segment.text('============\n'),
+        segment.text('原图:\n'),
+        segment.image(`base64://${image[0].image.toString('base64')}`),
+        segment.text('============\n'),
+        segment.text('处理后的图片:\n'),
+        segment.image(result.data[0].url),
+        segment.image(result.data[1].url)
+      ]
+      const forWordMsg = common.makeForward(replyMessage, e.bot.selfId, e.bot.selfName)
+
+      await e.bot.sendForwardMsg(e.contact, forWordMsg, {
+        news: [{ text: '图片抠图' }],
+        prompt: '图片抠图',
+        summary: Version.Plugin_AliasName,
+        source: '图片抠图'
+      })
+    } else {
+      throw new Error('无效的响应数据结构')
+    }
+  } catch (error) {
+    logger.error(error)
+    await e.reply(`[${Version.Plugin_AliasName}]图片抠图失败: ${(error as Error).message}`)
+  }
+}, {
+  name: '柠糖图片操作:图片抠图',
   priority: -Infinity,
   event: 'message'
 })
