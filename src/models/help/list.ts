@@ -30,6 +30,11 @@ export const helpList:HelpListType = [
       },
       {
         icon: 158,
+        title: '#抠图',
+        desc: '图片抠图'
+      },
+      {
+        icon: 158,
         title: '#反色',
         desc: '反色图片'
       },
