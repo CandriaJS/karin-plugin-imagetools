@@ -240,7 +240,7 @@ export const color_mask = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imageto
   event: 'message'
 })
 
-export const image_matting = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetools))?(?:图片)?(?:抠图)?$/i, async (e: Message) => {
+export const image_matting = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetools))?(?:图片)?(?:抠图)$/i, async (e: Message) => {
   try {
     const image = await utils.get_image(e, getType)
     if (!image) return await e.reply('请发送图片', { reply: true })
