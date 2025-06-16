@@ -1,5 +1,12 @@
 # 变更日志
 
+## [1.2.2](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.2.1...v1.2.2) (2025-06-16)
+
+
+### 🐛 错误修复
+
+* 抠图功能正则 ([fcfa9c3](https://github.com/CandriaJS/karin-plugin-imagetools/commit/fcfa9c3219f51c47e498bf08663b5fa150058a4e))
+
 ## [1.2.1](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.2.0...v1.2.1) (2025-06-16)
 
 
