@@ -38,7 +38,7 @@
     "watch": "cross-env EBV_FILE=\"development.env\" tsx watch --include \"src/**/*.ts\" src/app.ts"
   },
   "dependencies": {
-    "@candriajs/image-tool": "^0.3.4",
+    "@candriajs/image-tool": "^0.3.5",
     "@gradio/client": "^1.15.2",
     "adm-zip": "^0.5.16",
     "markdown-it": "^14.1.0"
