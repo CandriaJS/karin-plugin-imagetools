@@ -1,5 +1,12 @@
 # 变更日志
 
+## [1.2.3](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.2.2...v1.2.3) (2025-06-18)
+
+
+### ⚡️ 性能优化
+
+* 优化gif变速 ([507a74b](https://github.com/CandriaJS/karin-plugin-imagetools/commit/507a74b16152b6b25970f7bc82800e20f520c0b0))
+
 ## [1.2.2](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.2.1...v1.2.2) (2025-06-16)
 
 
