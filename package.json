@@ -1,6 +1,6 @@
 {
   "name": "@candriajs/karin-plugin-imagetools",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "一个Karin版的emoji合成插件",
   "keywords": [
     "karin-plugin",
