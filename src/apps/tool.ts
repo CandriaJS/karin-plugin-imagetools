@@ -192,6 +192,26 @@ export const grayscale = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetoo
   event: 'message'
 })
 
+export const mirage = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetools))?(?:幻影坦克)(?:图片)?$/i, async (e: Message) => {
+  try {
+    const image = await utils.get_image(e, getType)
+    const image_arr = image && image.length === 2 ? image : null
+
+    if (!image_arr) {
+      return await e.reply('未提供图片或图片数量不为2', { reply: true })
+    }
+    const reslut = imageTool.image_mirage(image_arr[0].image as Buffer, image_arr[1].image as Buffer)
+    await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+  } catch (error) {
+    logger.error(error)
+    await e.reply(`[${Version.Plugin_AliasName}]制作幻影坦克图片失败: ${(error as Error).message}`)
+  }
+}, {
+  name: '柠糖图片操作:幻影坦克',
+  priority: -Infinity,
+  event: 'message'
+})
+
 export const invert = karin.command(/^#?(?:(?:柠糖)(?:图片操作|imagetools))?(?:反色)(?:图片)?$/i, async (e: Message) => {
   try {
     const image = await utils.get_image(e, getType)

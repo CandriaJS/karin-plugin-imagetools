@@ -1,4 +1,4 @@
-import karin, { base64, buffer, Elements, ImageElement, Message } from 'node-karin'
+import karin, { base64, buffer, Elements, ImageElement, Message, MessageResponse } from 'node-karin'
 
 import { ImageInfoType } from '@/types'
 
@@ -38,7 +38,7 @@ export const isAbroad = async (): Promise<boolean> => {
 /**
  * 获取图片
  * @param e 消息事件
- * @param type 返回类型 url、base64 或 buffer
+ * @param type 返回类型 url 或 base64
  * @returns 图片数组信息
  */
 export async function get_image (
@@ -49,42 +49,32 @@ export async function get_image (
     .filter((m) => m.type === 'image')
     .map((img) => ({
       userId: e.sender.userId,
-      file: img.file
+      image: img.file
     }))
 
   const tasks: Promise<ImageInfoType>[] = []
 
-  let quotedImages: Array<{ userId: string; file: string }> = []
-  let source = null
+  let quotedImages: Array<ImageInfoType> = []
+  let source: MessageResponse | null = null
   /**
    * 获取引用消息的内容
    */
-  let MsgId: string | null = null
+  const replyId: string | null = e.replyId ?? e.elements.find((m) => m.type === 'reply')?.messageId ?? null
 
-  if (e.replyId) {
-    MsgId = (await e.bot.getMsg(e.contact, e.replyId)).messageId ?? null
-  } else {
-    MsgId = e.elements.find((m) => m.type === 'reply')?.messageId ?? null
-  }
-
-  if (MsgId) {
-    source = (await e.bot.getHistoryMsg(e.contact, MsgId, 2))?.[0] ?? null
+  if (replyId) {
+    source = (await e.bot.getMsg(e.contact, replyId)) ?? null
   }
 
   /**
    * 提取引用消息中的图片
    */
   if (source) {
-    const sourceArray = Array.isArray(source) ? source : [source]
-
-    quotedImages = sourceArray.flatMap(({ elements, sender }) =>
-      elements
-        .filter((element: Elements) => element.type === 'image')
-        .map((element: ImageElement) => ({
-          userId: sender.userId,
-          file: element.file
-        }))
-    )
+    quotedImages = source.elements
+      .filter((m) => m.type === 'image')
+      .map((img) => ({
+        userId: source.sender.userId,
+        image: img.file
+      }))
   }
 
   /**
@@ -96,18 +86,18 @@ export async function get_image (
         case 'buffer':
           return {
             userId: item.userId,
-            image: await buffer(item.file)
+            image: await buffer(item.image)
           }
         case 'base64':
           return {
             userId: item.userId,
-            image: await base64(item.file)
+            image: await base64(item.image)
           }
         case 'url':
         default:
           return {
             userId: item.userId,
-            image: item.file.toString()
+            image: item.image.toString()
           }
       }
     })
@@ -123,18 +113,18 @@ export async function get_image (
         case 'buffer':
           return {
             userId: item.userId,
-            image: await buffer(item.file)
+            image: await buffer(item.image)
           }
         case 'base64':
           return {
             userId: item.userId,
-            image: await base64(item.file)
+            image: await base64(item.image)
           }
         case 'url':
         default:
           return {
             userId: item.userId,
-            image: item.file.toString()
+            image: item.image.toString()
           }
       }
     })

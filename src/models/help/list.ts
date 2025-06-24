@@ -29,6 +29,11 @@ export const helpList:HelpListType = [
         desc: '灰度化图片'
       },
       {
+        icon: 160,
+        title: '#幻影坦克',
+        desc: '对两张图片进行幻影坦克处理'
+      },
+      {
         icon: 158,
         title: '#抠图',
         desc: '图片抠图'
