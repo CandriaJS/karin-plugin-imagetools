@@ -1,5 +1,12 @@
 # 变更日志
 
+## [1.3.0](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.2.3...v1.3.0) (2025-06-25)
+
+
+### ✨ 新功能
+
+* **tool:** 添加幻影坦克图片制作功能 ([a24b02d](https://github.com/CandriaJS/karin-plugin-imagetools/commit/a24b02d1b779a9bb41d10ade6aad0965df0bd00b))
+
 ## [1.2.3](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.2.2...v1.2.3) (2025-06-18)
 
 
