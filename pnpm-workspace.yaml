@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - '@karinjs/sqlite3-cjs'
+  - bufferutil
+  - esbuild
+  - msw
+  - unrs-resolver
