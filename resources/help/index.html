@@ -1,42 +1,216 @@
-{{extend defaultLayout}} {{block 'css'}}
-<link rel="stylesheet" type="text/css" href="{{_res_path}}/help/index.css" />
- {{@style}} 
- {{/block}}
-{{block 'main'}}
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{_res_path}}/help/index.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="header-content">
+          <h1 class="title">imagetools 帮助</h1>
+          <span class="header-sub-title">功能说明与使用指南</span>
+        </div>
+      </header>
 
-<div class="info-box">
-  <div class="head-box type{{bgType}}">
-    <div class="title">{{helpCfg.title}}</div>
-    <div class="label">{{helpCfg.subTitle}}</div>
-  </div>
-</div>
+      <div class="help-group">
+        <div class="section">
+          <h2 class="section-title">常用操作</h2>
+          <div class="grid">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#图片信息</h3>
+              </div>
+              <span class="card-desc">查看图片信息</span>
+            </div>
 
-{{each helpGroup group}} {{set len = group?.list?.length || 0 }}
-<div class="cont-box">
-  <div class="help-group">{{group.group}}</div>
-  {{if len > 0}}
-  <div class="help-table">
-    <div class="tr">
-      {{each group.list help idx}}
-      <div class="td">
-        <span class="help-icon" {{if help.css}}style="{{help.css}}">{{/if}}</span>
-        <strong class="help-title">{{help.title}}</strong>
-        <span class="help-desc">{{help.desc}}</span>
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#水平翻转</h3>
+              </div>
+              <span class="card-desc">水平翻转图片</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#垂直翻转</h3>
+              </div>
+              <span class="card-desc">垂直翻转图片</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#灰度化</h3>
+              </div>
+              <span class="card-desc">灰度化图片</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#幻影坦克</h3>
+              </div>
+              <span class="card-desc">将一张图片幻影坦克化</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#抠图</h3>
+              </div>
+              <span class="card-desc">图片抠图</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#幻影坦克</h3>
+              </div>
+              <span class="card-desc">将一张图片幻影坦克化</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#反色</h3>
+              </div>
+              <span class="card-desc">将一张图片反色化</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#颜色滤镜 + rgb</h3>
+              </div>
+              <span class="card-desc">将颜色滤镜应用到一张图片上</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#旋转 + 旋转角度</h3>
+              </div>
+              <span class="card-desc">旋转一张图片指定角度</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#旋转 + 旋转角度</h3>
+              </div>
+              <span class="card-desc">旋转一张图片指定角度</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#缩放 + 缩放比例</h3>
+              </div>
+              <span class="card-desc">缩放一张图片指定比例</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#水平拼接</h3>
+              </div>
+              <span class="card-desc">将多张图片水平拼接</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#垂直拼接</h3>
+              </div>
+              <span class="card-desc">将多张图片垂直拼接</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#gif分解</h3>
+              </div>
+              <span class="card-desc">将gif图片分解</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#gif合成[速度:秒]</h3>
+              </div>
+              <span class="card-desc">将多张图片合成成gif</span>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="card-icon">
+                  <img src="{{_res_path}}/icons/image.svg" alt="icon" />
+                </div>
+                <h3 class="card-title">#gif变速[速度]</h3>
+              </div>
+              <span class="card-desc">变速gif图片</span>
+            </div>
+
+            {{ if role == 'master' }}
+            <div class="section">
+              <h2 class="section-title">管理命令</h2>
+              <div class="grid">
+                <div class="card">
+                  <div class="card-content">
+                    <div class="card-icon">
+                      <img src="{{_res_path}}/icons/update.svg" alt="icon" />
+                    </div>
+                    <h3 class="card-title">#imagetools更新</h3>
+                  </div>
+                  <span class="card-desc">更新插件</span>
+                </div>
+              </div>
+            </div>
+            {{/if}}
+          </div>
+        </div>
       </div>
-      {{if idx%colCount === colCount-1 && idx>0 && idx< len-1}}
     </div>
-    <div class="tr">
-      {{/if}} 
-      {{/each}} 
-      {{set remainder = (colCount - (len % colCount)) % colCount}}
-      {{if remainder > 0}}
-        {{each [...Array(remainder)] item}}
-          <div class="td"></div>
-        {{/each}}
-      {{/if}}
-    </div>
-  </div>
-  {{/if}}
-</div>
-
-{{/each}} {{/block}}
+  </body>
+</html>

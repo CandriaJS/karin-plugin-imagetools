@@ -1,4 +1,3 @@
-export * from '@/types/common'
-export * from '@/types/config'
-export * from '@/types/help'
-export * from '@/types/utils'
+export * from './common'
+export * from './config'
+export * from './utils'

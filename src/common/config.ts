@@ -1,6 +1,14 @@
 import path from 'node:path'
 
-import { copyConfigSync, filesByExt, getFiles, karinPathBase, requireFileSync, watch, YamlEditor } from 'node-karin'
+import {
+  copyConfigSync,
+  filesByExt,
+  getFiles,
+  karinPathBase,
+  requireFileSync,
+  watch,
+  YamlEditor,
+} from 'node-karin'
 
 import { Version } from '@/root'
 import type { ConfigType } from '@/types'
@@ -13,13 +21,13 @@ class Cfg {
   /** 默认配置文件路径 */
   private defCfgPath: string
 
-  constructor () {
+  constructor() {
     this.dirCfgPath = `${karinPathBase}/${Version.Plugin_Name}/config/`
     this.defCfgPath = `${Version.Plugin_Path}/config/defSet/`
   }
 
   /** 初始化配置 */
-  initCfg () {
+  initCfg() {
     copyConfigSync(this.defCfgPath, this.dirCfgPath)
 
     const files = filesByExt(this.dirCfgPath, '.yaml', 'name')
@@ -27,7 +35,10 @@ class Cfg {
       const configEditor = new YamlEditor(`${this.dirCfgPath}/${file}`)
       const defConfigEditor = new YamlEditor(`${this.defCfgPath}/${file}`)
 
-      const { differences, result } = this.mergeObjectsWithPriority(configEditor, defConfigEditor)
+      const { differences, result } = this.mergeObjectsWithPriority(
+        configEditor,
+        defConfigEditor,
+      )
       if (differences) {
         result.save()
       }
@@ -41,7 +52,7 @@ class Cfg {
       watch(file, (old, now) => {
         // logger.info('旧数据:', old);
         // logger.info('新数据:', now);
-      })
+      }),
     )
 
     return this
@@ -52,21 +63,22 @@ class Cfg {
    * @param name 配置文件名
    * @returns 返回合并后的配置
    */
-  getDefOrConfig (name: keyof ConfigType) {
+  getDefOrConfig(name: keyof ConfigType) {
     const def = this.getYaml('defSet', name)
     const config = this.getYaml('config', name)
     return { ...def, ...config }
   }
 
   /** 获取所有配置文件 */
-  All (): ConfigType {
+  All(): ConfigType {
     const allConfig: ConfigType = {} as ConfigType
 
     const files = getFiles(this.defCfgPath, ['.yaml'])
 
     files.forEach((file) => {
       const fileName = path.basename(file, '.yaml') as keyof ConfigType
-      allConfig[fileName] = this.getDefOrConfig(fileName) ?? ({} as ConfigType[keyof ConfigType])
+      allConfig[fileName] =
+        this.getDefOrConfig(fileName) ?? ({} as ConfigType[keyof ConfigType])
     })
 
     return allConfig
@@ -78,7 +90,7 @@ class Cfg {
    * @param name 配置文件名
    * @returns 返回 YAML 文件内容
    */
-  private getYaml (type: ConfigDirType, name: keyof ConfigType) {
+  private getYaml(type: ConfigDirType, name: keyof ConfigType) {
     const file =
       type === 'config'
         ? `${this.dirCfgPath}/${name}.yaml`
@@ -94,7 +106,12 @@ class Cfg {
    * @param value 值
    * @param type 配置文件类型，默认为用户配置文件 `config`
    */
-  Modify (name: keyof ConfigType, key: string, value: any, type: ConfigDirType = 'config') {
+  Modify(
+    name: keyof ConfigType,
+    key: string,
+    value: any,
+    type: ConfigDirType = 'config',
+  ) {
     const filePath =
       type === 'config'
         ? `${this.dirCfgPath}/${name}.yaml`
@@ -108,9 +125,9 @@ class Cfg {
   /**
    * 合并 YAML 对象，确保保留注释
    */
-  mergeObjectsWithPriority (
+  mergeObjectsWithPriority(
     userEditor: YamlEditor,
-    defaultEditor: YamlEditor
+    defaultEditor: YamlEditor,
   ): { result: YamlEditor; differences: boolean } {
     let differences = false
 
@@ -122,7 +139,10 @@ class Cfg {
         for (const key in sourceData) {
           if (!(key in targetData)) {
             differences = true
-            userEditor.set(`${targetPath ? `${targetPath}.` : ''}${key}`, sourceData[key])
+            userEditor.set(
+              `${targetPath ? `${targetPath}.` : ''}${key}`,
+              sourceData[key],
+            )
           }
         }
       }
@@ -139,11 +159,11 @@ type Config = ConfigType & Pick<Cfg, 'All' | 'Modify'>
 export const Config = new Proxy<Cfg & ConfigType>(
   Object.assign(new Cfg().initCfg(), {} as ConfigType),
   {
-    get (target, prop: string) {
+    get(target, prop: string) {
       if (prop in target) {
         return Reflect.get(target, prop)
       }
       return target.getDefOrConfig(prop as keyof ConfigType)
-    }
-  }
+    },
+  },
 )

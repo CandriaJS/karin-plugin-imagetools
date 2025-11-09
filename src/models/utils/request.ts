@@ -2,7 +2,7 @@ import { logger } from 'node-karin'
 import axios, {
   type AxiosError,
   type AxiosInstance,
-  type AxiosRequestConfig
+  type AxiosRequestConfig,
 } from 'node-karin/axios'
 
 import { Version } from '@/root'
@@ -11,11 +11,11 @@ import type { ResponseType } from '@/types'
 class Request {
   private axiosInstance: AxiosInstance
 
-  constructor () {
+  constructor() {
     this.axiosInstance = axios.create({
       headers: {
-        'User-Agent': `${Version.Plugin_Name}/v${Version.Plugin_Version}`
-      }
+        'User-Agent': `${Version.Plugin_Name}/v${Version.Plugin_Version}`,
+      },
     })
   }
 
@@ -29,18 +29,18 @@ class Request {
    * @param responseType 响应类型
    * @returns 响应数据
    */
-  private async request (
+  private async request(
     method: 'get' | 'post',
     url: string,
     data?: any,
     params?: Record<string, string> | null,
     headers?: Record<string, string> | null,
-    responseType: 'json' | 'arraybuffer' | 'text' = 'json'
+    responseType: 'json' | 'arraybuffer' | 'text' = 'json',
   ): Promise<ResponseType> {
     const config: AxiosRequestConfig = {
       params,
       headers: headers ?? undefined,
-      responseType
+      responseType,
     }
 
     try {
@@ -59,7 +59,10 @@ class Request {
         success: response.status >= 200 && response.status < 500,
         statusCode: response.status,
         data: response.data,
-        msg: response.status >= 200 && response.status < 500 ? '请求成功' : '请求失败'
+        msg:
+          response.status >= 200 && response.status < 500
+            ? '请求成功'
+            : '请求失败',
       }
     } catch (error) {
       logger.error(error)
@@ -69,7 +72,7 @@ class Request {
         success: false,
         statusCode: axiosError.response?.status ?? 500,
         data: null,
-        msg: errorMessage
+        msg: errorMessage,
       }
     }
   }
@@ -82,11 +85,11 @@ class Request {
    * @param responseType 响应类型
    * @returns 响应数据
    */
-  async get (
+  async get(
     url: string,
     params?: Record<string, string> | null,
     headers?: Record<string, string> | null,
-    responseType: 'json' | 'arraybuffer' | 'text' = 'json'
+    responseType: 'json' | 'arraybuffer' | 'text' = 'json',
   ): Promise<ResponseType> {
     return this.request('get', url, null, params, headers, responseType)
   }
@@ -99,11 +102,11 @@ class Request {
    * @param responseType 响应类型
    * @returns 响应数据
    */
-  async post (
+  async post(
     url: string,
     data: any,
     headers?: Record<string, string> | null,
-    responseType: 'json' | 'arraybuffer' = 'json'
+    responseType: 'json' | 'arraybuffer' = 'json',
   ): Promise<ResponseType> {
     return this.request('post', url, data, null, headers, responseType)
   }
@@ -113,7 +116,7 @@ class Request {
    * @param error 错误对象
    * @returns 错误信息
    */
-  private handleError (error: AxiosError): string {
+  private handleError(error: AxiosError): string {
     if (axios.isAxiosError(error)) {
       let errorMessage
 

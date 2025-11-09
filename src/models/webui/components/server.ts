@@ -17,13 +17,14 @@ export const serverComponents = () => [
             defaultValue: Config.server.url,
             rules: [
               {
-                regex: /^https?:\/\/((?:\d{1,3}\.){3}\d{1,3}|\w+\.\w{2,})(:\d{1,5})?$/i,
-                error: '请输入有效的URL地址'
-              }
-            ]
-          })
-        ]
-      })
-    ]
-  })
+                regex:
+                  /^https?:\/\/((?:\d{1,3}\.){3}\d{1,3}|\w+\.\w{2,})(:\d{1,5})?$/i,
+                error: '请输入有效的URL地址',
+              },
+            ],
+          }),
+        ],
+      }),
+    ],
+  }),
 ]

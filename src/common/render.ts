@@ -9,7 +9,7 @@ import { Version } from '@/root'
  * 渲染精度
  * @param {string} pct 缩放百分比
  */
-function scale (pct = 1) {
+function scale(pct = 1) {
   const renderScale = Config.other.renderScale || 100
   const scale = Math.min(2, Math.max(0.5, renderScale / 100))
   pct = pct * scale
@@ -22,7 +22,7 @@ function scale (pct = 1) {
  * @param params 渲染参数
  */
 const Render = {
-  async render (name: string, params: Record<string, any> = {}) {
+  async render(name: string, params: Record<string, any> = {}) {
     name = name.replace(/.html$/, '')
     const root = `${Version.Plugin_Path}/resources`
     const img = await karin.render({
@@ -32,27 +32,33 @@ const Render = {
       file: `${root}/${name}.html`,
       data: {
         _res_path: `${Version.Plugin_Path}/resources`.replace(/\\/g, '/'),
-        defaultLayout: `${Version.Plugin_Path}/resources/common/layout/default.html`.replace(/\\/g, '/'),
+        defaultLayout:
+          `${Version.Plugin_Path}/resources/common/layout/default.html`.replace(
+            /\\/g,
+            '/',
+          ),
         sys: {
-          scale: scale(params.scale ?? 1)
+          scale: scale(params.scale ?? 1),
         },
         copyright: `${Version.Bot_Name}<span class="version"> ${Version.Bot_Version}</span> & ${Version.Plugin_Name}<span class="version"> ${Version.Plugin_Version}`,
-        ...params
+        ...params,
       },
       screensEval: '#containter',
       multiPage: 12000,
       pageGotoParams: {
         waitUntil: 'networkidle0',
-        timeout: 60000
-      }
+        timeout: 60000,
+      },
     })
     const ret: ImageElement[] = []
     for (const image of img) {
-      const base64Image = image.startsWith('base64://') ? image : `base64://${image}`
+      const base64Image = image.startsWith('base64://')
+        ? image
+        : `base64://${image}`
       ret.push(segment.image(base64Image))
     }
 
     return ret
-  }
+  },
 }
 export { Render }
