@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "app": "node --import tsx src/app.ts",
-    "build": "tsc --noEmit && tsup",
+    "build": "tsc --noEmit && tsdown",
     "dev": "cross-env EBV_FILE=\"development.env\" node --import tsx src/app.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

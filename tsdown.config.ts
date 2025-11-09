@@ -3,7 +3,7 @@ import { defineConfig } from 'tsdown'
 export default defineConfig({
   entry: ['src/index.ts', 'src/web.config.ts', 'src/apps/**/*.ts'], // 入口文件
   format: ['esm'], // ESM格式
-  bundle: true, // 打包依赖
+  unbundle: false, // 打包依赖
   dts: false, // 生成类型声明文件
   clean: true, // 清理dist目录
   minify: true, // 压缩生产环境代码
