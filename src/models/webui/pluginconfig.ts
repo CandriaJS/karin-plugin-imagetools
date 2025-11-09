@@ -7,7 +7,7 @@ export const pluginConfig = {
     {
       name: pkg.author,
       home: pkg.homepage,
-      avatar: 'https://avatars.githubusercontent.com/u/196008293'
-    }
-  ]
+      avatar: 'https://avatars.githubusercontent.com/u/196008293',
+    },
+  ],
 }

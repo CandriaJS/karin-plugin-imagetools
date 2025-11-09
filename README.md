@@ -14,6 +14,7 @@
 </div>
 
 ## 介绍 📝
+
 `柠糖图片操作` 是一个 `Karin` 的扩展插件，提供图片操作功能。
 
 如有问题请提交 `issue` 或加入 Q 群: `272040396` 📬
@@ -27,12 +28,15 @@ pnpm add @candriajs/karin-plugin-imagetools@latest -w
 ```
 
 ## 使用帮助 ℹ️
+
 其他内容请查看 [官方文档](https://docs.wuliya.cn)
 
 ## 图片操作
+
 目前支持以下图片操作：
 
 ### 基础图片处理
+
 - 水平翻转：水平翻转图片
 - 垂直翻转：垂直翻转图片
 - 旋转：旋转图片指定角度
@@ -44,10 +48,12 @@ pnpm add @candriajs/karin-plugin-imagetools@latest -w
 - 幻影坦克: 将2张图片图片转换为幻影坦克
 
 ### 图片拼接
+
 - 水平拼接：将多张图片水平拼接成一张
 - 垂直拼接：将多张图片垂直拼接成一张
 
 ### GIF 处理
+
 - GIF 分解：将 GIF 图片分解为单帧图片
 - GIF 合成：将多张图片合成为 GIF
 - GIF 反转：将 GIF 图片帧序反转
@@ -63,7 +69,7 @@ pnpm add @candriajs/karin-plugin-imagetools@latest -w
   <img src="https://contrib.rocks/image?repo=CandriaJS/karin-plugin-imagetools" />
 </a>
 
-![Alt](https://repobeats.axiom.co/api/embed/73df3435008d412e567482e27446e9467c7f9007.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/73df3435008d412e567482e27446e9467c7f9007.svg 'Repobeats analytics image')
 
 # 资源 📚
 

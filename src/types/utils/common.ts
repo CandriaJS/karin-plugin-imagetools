@@ -5,9 +5,9 @@ export interface AvatarInfoType {
   avatar: string
 }
 
-export interface ImageInfoType {
+export interface ImageInfoType<D> {
   /** 用户id */
   userId: string
   /** 图片 */
-  image: string | Buffer
+  image: D extends 'buffer' ? Buffer : string
 }

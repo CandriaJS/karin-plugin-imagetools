@@ -5,7 +5,7 @@ export default {
   info: webui.pluginConfig,
 
   /** 动态渲染的组件 */
-  components: async () => (await webui.components()),
+  components: async () => await webui.components(),
 
   /** 前端点击保存之后调用的方法 */
 
@@ -13,5 +13,5 @@ export default {
   save: (newConfig: ConfigType) => {
     console.log('新配置:', newConfig)
     return webui.saveConfig(newConfig)
-  }
+  },
 }

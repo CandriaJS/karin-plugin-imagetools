@@ -38,32 +38,29 @@
     "watch": "cross-env EBV_FILE=\"development.env\" tsx watch --include \"src/**/*.ts\" src/app.ts"
   },
   "dependencies": {
-    "@candriajs/image-tool": "^0.4.0",
+    "@puniyu/piccy": "^0.4.1",
     "@gradio/client": "^1.15.2",
     "adm-zip": "^0.5.16",
     "markdown-it": "^14.1.0"
   },
   "devDependencies": {
-    "@karinjs/plugin-puppeteer": "^1.0.16",
+    "@karinjs/plugin-puppeteer": "^1.0.21",
+    "@prettier/plugin-oxc": "^0.0.4",
     "@types/adm-zip": "^0.5.7",
-    "@types/lodash": "^4.17.16",
+    "@types/express": "^5.0.5",
     "@types/markdown-it": "^14.1.2",
+    "@types/markdown-it-emoji": "^3.0.1",
     "@types/node": "^22.15.3",
-    "@typescript-eslint/parser": "^8.31.1",
     "cross-env": "^7.0.3",
-    "eslint": "^9.26.0",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
-    "globals": "^15.15.0",
     "icqq": "^0.6.10",
-    "neostandard": "^0.12.1",
-    "node-karin": "^1.9.8",
+    "node-karin": "^1.12.2",
+    "oxlint": "^1.26.0",
+    "prettier": "^3.6.2",
     "tsc-alias": "1.8.13",
-    "tsup": "^8.4.0",
+    "tsdown": "^0.15.12",
     "tsx": "^4.19.4",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.31.1"
+    "typescript": "^5.8.3"
   },
-  "packageManager": "pnpm@9.13.2",
   "karin": {
     "main": "src/index.ts",
     "web": "./lib/web.config.js",
@@ -85,5 +82,6 @@
     "engines": {
       "karin": ">=1.9.1"
     }
-  }
+  },
+  "packageManager": "pnpm@10.14.0"
 }

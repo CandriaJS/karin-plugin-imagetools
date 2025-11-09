@@ -13,38 +13,40 @@ const pkg = requireFileSync(`${dirPath}/package.json`)
 
 export const isPackaged = Object.freeze(dirPath.includes('node_modules'))
 
-const Version:VersionType = {
+const Version: VersionType = {
   /** 当前Bot名称 */
-  get Bot_Name () {
+  get Bot_Name() {
     return config.pkg().name === 'node-karin' ? 'Karin' : config.pkg().name
   },
   /** 当前Bot版本 */
-  get Bot_Version () {
+  get Bot_Version() {
     return config.pkg().version
   },
   /** 当前Bot路径 */
-  get Bot_Path () {
+  get Bot_Path() {
     return process.cwd().replace(/\\/g, '/')
   },
   /** 插件包路径 */
-  get Plugin_Path () {
+  get Plugin_Path() {
     return dirPath
   },
   /** 插件包名称 */
-  get Plugin_Name () {
-    return (isPackaged || process.env.NODE_ENV === 'development') ? pkg.name : basename
+  get Plugin_Name() {
+    return isPackaged || process.env.NODE_ENV === 'development'
+      ? pkg.name
+      : basename
   },
   /** 插件包别名 */
-  get Plugin_AliasName () {
+  get Plugin_AliasName() {
     return '柠糖图片操作'
   },
   /** 插件包版本 */
-  get Plugin_Version () {
+  get Plugin_Version() {
     return pkg.version
   },
-  get Plugin_Anthor () {
+  get Plugin_Anthor() {
     return pkg.author
-  }
+  },
 }
 
 export { pkg, Version }
