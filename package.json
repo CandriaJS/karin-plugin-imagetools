@@ -1,6 +1,6 @@
 {
   "name": "@candriajs/karin-plugin-imagetools",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "一个Karin版的emoji合成插件",
   "keywords": [
     "karin-plugin",
@@ -38,26 +38,23 @@
     "watch": "cross-env EBV_FILE=\"development.env\" tsx watch --include \"src/**/*.ts\" src/app.ts"
   },
   "dependencies": {
-    "@gradio/client": "^1.15.2",
+    "@gradio/client": "^2.0.0",
     "@puniyu/piccy": "^0.4.1",
-    "@puniyu/component": "^0.4.1",
-    "adm-zip": "^0.5.16",
-    "markdown-it": "^14.1.0"
+    "@puniyu/component": "^0.5.2",
+    "adm-zip": "^0.5.16"
   },
   "devDependencies": {
-    "@prettier/plugin-oxc": "^0.0.4",
+    "@prettier/plugin-oxc": "^0.1.3",
     "@types/adm-zip": "^0.5.7",
     "@types/express": "^5.0.5",
-    "@types/markdown-it": "^14.1.2",
-    "@types/markdown-it-emoji": "^3.0.1",
     "@types/node": "^22.15.3",
     "cross-env": "^7.0.3",
     "icqq": "^0.6.10",
     "node-karin": "^1.12.2",
-    "oxlint": "^1.26.0",
+    "oxlint": "^1.32.0",
     "prettier": "^3.6.2",
     "tsc-alias": "1.8.13",
-    "tsdown": "^0.15.12",
+    "tsdown": "^0.17.2",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },

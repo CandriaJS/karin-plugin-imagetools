@@ -1,17 +1,28 @@
 import { defineConfig } from 'tsdown'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const filePath = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
-  entry: ['src/index.ts', 'src/web.config.ts', 'src/apps/**/*.ts'], // 入口文件
-  format: ['esm'], // ESM格式
-  unbundle: false, // 打包依赖
-  dts: false, // 生成类型声明文件
-  clean: true, // 清理dist目录
-  minify: true, // 压缩生产环境代码
-  shims: true, // 生成polyfill代码
-  target: 'node22', // 指定ECMAScript目标版本
-  sourcemap: false, // 生成sourcemap
-  treeshake: true, // 启用树摇优化
-  platform: 'node', // 指定为Node.js环境
-  outDir: 'lib', // 指定输出目录
-  external: [/^node-karin/], // 外部依赖, 不打包进输出文件中
+  entry: ['src/index.ts', 'src/web.config.ts', 'src/apps/**/*.ts'],
+  format: 'esm',
+  outExtensions: (_) => {
+    return {
+      js: '.js',
+      dts: '.d.ts',
+    }
+  },
+  nodeProtocol: true,
+  unbundle: false,
+  fixedExtension: true,
+  dts: false,
+  clean: true,
+  minify: true,
+  target: 'node22',
+  sourcemap: false,
+  treeshake: true,
+  platform: 'node',
+  outDir: path.join(filePath, 'lib'),
+  external: [/^node-karin/],
 })

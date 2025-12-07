@@ -1,1 +1,1 @@
-export { VersionType } from '@/types/common/version'
+export { type VersionType } from './version'

@@ -59,10 +59,11 @@ export const help = karin.command(
       })
     }
     const bg = await fs.promises.readFile(
-      `${Version.Plugin_Path}/resources/background.png`,
+      `${Version.Plugin_Path}/resources/background.webp`,
     )
 
-    const img = Render.help({
+    const img = await Render.help({
+      title: "柠糖图片操作",
       theme: {
         backgroundImage: bg,
       },
