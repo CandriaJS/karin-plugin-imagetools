@@ -38,13 +38,13 @@
     "watch": "cross-env EBV_FILE=\"development.env\" tsx watch --include \"src/**/*.ts\" src/app.ts"
   },
   "dependencies": {
-    "@puniyu/piccy": "^0.4.1",
     "@gradio/client": "^1.15.2",
+    "@puniyu/piccy": "^0.4.1",
+    "@puniyu/component": "^0.4.1",
     "adm-zip": "^0.5.16",
     "markdown-it": "^14.1.0"
   },
   "devDependencies": {
-    "@karinjs/plugin-puppeteer": "^1.0.21",
     "@prettier/plugin-oxc": "^0.0.4",
     "@types/adm-zip": "^0.5.7",
     "@types/express": "^5.0.5",
