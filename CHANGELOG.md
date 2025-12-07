@@ -1,5 +1,12 @@
 # 变更日志
 
+## [1.3.2](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.3.1...v1.3.2) (2025-12-07)
+
+
+### 🔧 其他更新
+
+* **help:** 更新help渲染方式 ([4ec267d](https://github.com/CandriaJS/karin-plugin-imagetools/commit/4ec267ddb1ee9562ca5dea5f8a5899e873695717))
+
 ## [1.3.1](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.3.0...v1.3.1) (2025-11-09)
 
 
