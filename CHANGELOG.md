@@ -1,5 +1,12 @@
 # 变更日志
 
+## [1.4.1](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.4.0...v1.4.1) (2025-12-30)
+
+
+### 🔧 其他更新
+
+* **package:** 更新 @puniyu/piccy 依赖版本 ([3da83bf](https://github.com/CandriaJS/karin-plugin-imagetools/commit/3da83bfde80ba9cf108684fcdc058f0909c3e699))
+
 ## [1.4.0](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.3.2...v1.4.0) (2025-12-10)
 
 
