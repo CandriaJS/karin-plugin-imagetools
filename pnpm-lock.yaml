@@ -15,8 +15,8 @@ importers:
         specifier: ^0.5.2
         version: 0.5.2
       '@puniyu/piccy':
-        specifier: ^0.4.1
-        version: 0.4.1
+        specifier: ^0.4.2
+        version: 0.4.2
       adm-zip:
         specifier: ^0.5.16
         version: 0.5.16
@@ -385,6 +385,9 @@ packages:
   '@napi-rs/wasm-runtime@1.1.0':
     resolution: {integrity: sha512-Fq6DJW+Bb5jaWE69/qOE0D1TUN9+6uWhCeZpdnSBk14pjLcCWR7Q8n49PTSPHazM37JqrsdpEthXy2xn6jWWiA==}
 
+  '@napi-rs/wasm-runtime@1.1.1':
+    resolution: {integrity: sha512-p64ah1M1ld8xjWv3qbvFwHiFVWrq1yFvV4f7w+mzaqiR4IlSgkqhcRdHwsGgomwzBH51sRY4NEowLxnaBjcW/A==}
+
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -550,46 +553,46 @@ packages:
     resolution: {integrity: sha512-Boqe2x3GBp/mxArYyR4vdSjvWB8ckUPlChEWz/DnOXTpXTiDc+aGbUugHPUv51pVEfKPzLtSOdliVBefFCXFJA==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
-  '@puniyu/piccy-darwin-arm64@0.4.1':
-    resolution: {integrity: sha512-mO8TtkIKs8IL986rJypHIedwRXxRUQMS7vdwFcrXyKq8umZL8LCQEUnTjfmnlJIhzotryKek4//94D3vTZi3Qw==}
-    engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
+  '@puniyu/piccy-darwin-arm64@0.4.2':
+    resolution: {integrity: sha512-V6Z/Khjb4195tHUl/ws0AHVLhp5ORDPTyMAsp1ZXSjnCpY52BeLzgR861m1a+Dpkx2PlQ/Wn9qSg8eF/A8WvdA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [darwin]
 
-  '@puniyu/piccy-darwin-x64@0.4.1':
-    resolution: {integrity: sha512-UlvHJUbmw6OoIbKzEps8rLrh682gmXIM8BXGDn7+DdwvFsZSkrXoCsESdTraX4TQ2srgFJg3NIsymcXs4U4ypg==}
-    engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
+  '@puniyu/piccy-darwin-x64@0.4.2':
+    resolution: {integrity: sha512-+dMwZyqr7QBBw0Exg173lqzO5Ha2mw/DEzhx7dW3m8VJzy6YmoPel14BhgJGtv0NyMMAoxWWxLGyuXjz+WtxiQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [darwin]
 
-  '@puniyu/piccy-linux-arm64-gnu@0.4.1':
-    resolution: {integrity: sha512-5TE+Pn7hj7hoSBhJsNm2oLjuCQsAeB4WwXrRV2gqRq/IqGkAWlmqX35JkdPz9WtkMev9egH2WHr8WVESl+QmTw==}
-    engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
+  '@puniyu/piccy-linux-arm64-gnu@0.4.2':
+    resolution: {integrity: sha512-1KtEx3UHlCGDhwKDNFKb4ItoVYlu9kB2jGpSVISTmqc7NrQie3PX5LDS/aHST5/5IcxDnASLIFDB9pB9rbmuWQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@puniyu/piccy-linux-x64-gnu@0.4.1':
-    resolution: {integrity: sha512-TuqZ8FILmv0YyqBC1Fn53aeZPwd27l0RgZA4duD1QDQAx9Bebvpzt1fcXoqvlrstQ2dsYCBFeHngdTVdeJYwxg==}
-    engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
+  '@puniyu/piccy-linux-x64-gnu@0.4.2':
+    resolution: {integrity: sha512-w9zq/s3fSQWuygM1atHwbwziG1kNsgchQiqO3ORyQWI3N3VHAb4eCtLvPLAnTP/4+9xmS8bpDQlR+owKFqke6g==}
+    engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@puniyu/piccy-wasm32-wasi@0.4.1':
-    resolution: {integrity: sha512-tJ6iFO8Q3vBWW6jalXhtVws3sCQDsB5GOMSruAqH8KY4AxIYVi2K3eFiThIY70457YjQqajDDJr0KUf0/pyx5g==}
+  '@puniyu/piccy-wasm32-wasi@0.4.2':
+    resolution: {integrity: sha512-Vhbd1J20b/L2JD/jcOEo2pCPzjibJ92Kllpr/M4cxZEhN4FlPcjnEj+Vm/kop9wRlZnOrYhk67SvLu3xNGDf6g==}
     engines: {node: '>=14.0.0'}
     cpu: [wasm32]
 
-  '@puniyu/piccy-win32-x64-msvc@0.4.1':
-    resolution: {integrity: sha512-z/47Gte67Ws7t4McPiHxtD5AjNhepAxyfC77i3jYKs8p9aMbxb7/fgYyG/HiVRW+GkUCytRaV0lay32/akseUQ==}
-    engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
+  '@puniyu/piccy-win32-x64-msvc@0.4.2':
+    resolution: {integrity: sha512-Vy20+CnS58syMPrU4oIFoavPxaYS9xDlkiUXA6BMB9H133+SgzmUHolPP63CoF5OuqRdP4UCluzhIL0h4Q7OoA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [win32]
 
-  '@puniyu/piccy@0.4.1':
-    resolution: {integrity: sha512-HTzioKXYe5qlMDNBpmrc2k/AhzxEgAsbLLwDzy8WaRUdmkrMF2jZ5FUeL1sHw0dRKNyHBJAfpSFYSiLIu743mQ==}
-    engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
+  '@puniyu/piccy@0.4.2':
+    resolution: {integrity: sha512-G3XyhfuaP4r4yEwefPCdOOoTxveR94shZG1V2rEWJszKAnlUjMwl+nz/jA4bRaAj10ISbBOtWNGjCSyX14jCNQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
 
   '@quansync/fs@1.0.0':
     resolution: {integrity: sha512-4TJ3DFtlf1L5LDMaM6CanJ/0lckGNtJcMjQ1NAV6zDmA0tEHKZtxNKin8EgPaVX1YzljbxckyT2tJrpQKAtngQ==}
@@ -1534,6 +1537,13 @@ snapshots:
       '@tybys/wasm-util': 0.10.1
     optional: true
 
+  '@napi-rs/wasm-runtime@1.1.1':
+    dependencies:
+      '@emnapi/core': 1.7.1
+      '@emnapi/runtime': 1.7.1
+      '@tybys/wasm-util': 0.10.1
+    optional: true
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -1629,34 +1639,34 @@ snapshots:
     dependencies:
       canvas: '@napi-rs/canvas@0.1.84'
 
-  '@puniyu/piccy-darwin-arm64@0.4.1':
+  '@puniyu/piccy-darwin-arm64@0.4.2':
     optional: true
 
-  '@puniyu/piccy-darwin-x64@0.4.1':
+  '@puniyu/piccy-darwin-x64@0.4.2':
     optional: true
 
-  '@puniyu/piccy-linux-arm64-gnu@0.4.1':
+  '@puniyu/piccy-linux-arm64-gnu@0.4.2':
     optional: true
 
-  '@puniyu/piccy-linux-x64-gnu@0.4.1':
+  '@puniyu/piccy-linux-x64-gnu@0.4.2':
     optional: true
 
-  '@puniyu/piccy-wasm32-wasi@0.4.1':
+  '@puniyu/piccy-wasm32-wasi@0.4.2':
     dependencies:
-      '@napi-rs/wasm-runtime': 1.0.7
+      '@napi-rs/wasm-runtime': 1.1.1
     optional: true
 
-  '@puniyu/piccy-win32-x64-msvc@0.4.1':
+  '@puniyu/piccy-win32-x64-msvc@0.4.2':
     optional: true
 
-  '@puniyu/piccy@0.4.1':
+  '@puniyu/piccy@0.4.2':
     optionalDependencies:
-      '@puniyu/piccy-darwin-arm64': 0.4.1
-      '@puniyu/piccy-darwin-x64': 0.4.1
-      '@puniyu/piccy-linux-arm64-gnu': 0.4.1
-      '@puniyu/piccy-linux-x64-gnu': 0.4.1
-      '@puniyu/piccy-wasm32-wasi': 0.4.1
-      '@puniyu/piccy-win32-x64-msvc': 0.4.1
+      '@puniyu/piccy-darwin-arm64': 0.4.2
+      '@puniyu/piccy-darwin-x64': 0.4.2
+      '@puniyu/piccy-linux-arm64-gnu': 0.4.2
+      '@puniyu/piccy-linux-x64-gnu': 0.4.2
+      '@puniyu/piccy-wasm32-wasi': 0.4.2
+      '@puniyu/piccy-win32-x64-msvc': 0.4.2
 
   '@quansync/fs@1.0.0':
     dependencies:

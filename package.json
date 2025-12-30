@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@gradio/client": "^2.0.0",
-    "@puniyu/piccy": "^0.4.1",
+    "@puniyu/piccy": "^0.4.2",
     "@puniyu/component": "^0.5.2",
     "adm-zip": "^0.5.16"
   },
