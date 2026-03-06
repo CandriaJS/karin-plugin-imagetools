@@ -76,14 +76,14 @@ jobs:
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
-      - name: 设置 bun
-        uses: oven-sh/setup-bun@v2
+      - name: 设置 pnpm
+        uses: pnpm/action-setup@v4
         with:
-          bun-version: latest
+          version: 10.25.0
 
       - name: 发布 plugin
         run: |
-          bun x pkg-pr-new publish --json output.json --comment=off > plugin.txt 2>&1
+          pnpm dlx pkg-pr-new@0.0.63 publish --json output.json --comment=off > plugin.txt 2>&1
 
           echo "## 成功推送的Package包 :" >> $GITHUB_STEP_SUMMARY
           echo "包名: \`@candriajs/karin-plugin-git\`" >> $GITHUB_STEP_SUMMARY

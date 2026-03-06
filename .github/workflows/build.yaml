@@ -16,15 +16,16 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
 
-      - name: 设置 bun
-        uses: oven-sh/setup-bun@v2
+
+      - name: 设置 pnpm
+        uses: pnpm/action-setup@v4
         with:
-          bun-version: latest
+          version: 10.25.0
 
       - name: 构建plugin
         run: |
-          bun install
-          bun run build
+          pnpm install
+          pnpm run build
           mkdir -p ${{ runner.temp }}/temp/plugin
           cp -r package.json CHANGELOG.md README.md LICENSE resources config lib ${{ runner.temp }}/temp/plugin
 
