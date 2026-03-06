@@ -1,5 +1,17 @@
 # 变更日志
 
+## [1.4.2](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.4.1...v1.4.2) (2026-03-06)
+
+
+### 🐛 错误修复
+
+* ci ([1d40bd5](https://github.com/CandriaJS/karin-plugin-imagetools/commit/1d40bd54d92589eb20f52ae835581478f99057a0))
+
+
+### ♻️ 代码重构
+
+* 适配新版api ([a2ae7b3](https://github.com/CandriaJS/karin-plugin-imagetools/commit/a2ae7b3b74bce8165b2c71e30b291cea2a440122))
+
 ## [1.4.1](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.4.0...v1.4.1) (2025-12-30)
 
 
