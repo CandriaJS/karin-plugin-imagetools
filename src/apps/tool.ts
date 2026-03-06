@@ -1,22 +1,10 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import {
-  imageFlip,
   FlipMode,
-  imageRotate,
-  imageInfo,
-  imageResize,
-  imageCrop,
-  imageGrayscale,
-  imageMerge,
-  imageMirage,
-  imageInvert,
-  imageColorMask,
+  Image,
   MergeMode,
-  gifSplit,
-  gifMerge,
-  gifReverse,
-  gifChangeDuration,
+  Rgb,
 } from '@puniyu/piccy'
 import { Client as GClient } from '@gradio/client'
 import AdmZip from 'adm-zip'
@@ -46,8 +34,8 @@ export const flip_horizontal = karin.command(
       if (!image_buffer) {
         return await e.reply('请发送图片', { reply: true })
       }
-      const result = imageFlip(image_buffer as Buffer, FlipMode.Horizontal)
-      await e.reply([segment.image(`base64://${result.toString('base64')}`)])
+      const result = Image.fromBytes(image_buffer).flip(FlipMode.Horizontal).toBase64();
+      await e.reply([segment.image(`base64://${result}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(`水平翻转图片失败: ${(error as Error).message}`)
@@ -70,12 +58,12 @@ export const flip_vertical = karin.command(
       if (!image_buffer) {
         return await e.reply('请发送图片', { reply: true })
       }
-      const result = imageFlip(image_buffer as Buffer, FlipMode.Vertical)
-      await e.reply([segment.image(`base64://${result.toString('base64')}`)])
+      const result = Image.fromBytes(image_buffer).flip(FlipMode.Vertical).toBase64()
+      await e.reply([segment.image(`base64://${result}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]垂直翻转图片图片失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]垂直翻转图片图片失败: ${(error as Error).message}`,
       )
     }
   },
@@ -100,12 +88,12 @@ export const rotate = karin.command(
       if (!angle) {
         return await e.reply('请输入旋转角度')
       }
-      const result = imageRotate(image_buffer as Buffer, parseInt(angle))
-      await e.reply([segment.image(`base64://${result.toString('base64')}`)])
+      const result = Image.fromBytes(image_buffer).rotate(parseInt(angle)).toBase64()
+      await e.reply([segment.image(`base64://${result}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]旋转图片失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]旋转图片失败: ${(error as Error).message}`,
       )
     }
   },
@@ -131,7 +119,8 @@ export const resize = karin.command(
         return await e.reply('请输入正确的尺寸格式, 如:100x100,100x,50%')
       }
 
-      const image_info = imageInfo(image_buffer as Buffer)
+      const img = Image.fromBytes(image_buffer)
+      const image_info = img.info()
       let finalWidth: number
       let finalHeight: number
 
@@ -148,16 +137,12 @@ export const resize = karin.command(
           : Math.floor(image_info.height * (finalWidth / image_info.width))
       }
 
-      const reslut = imageResize(
-        image_buffer as Buffer,
-        finalWidth,
-        finalHeight,
-      )
-      await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+      const reslut = img.resize(finalWidth, finalHeight).toBase64()
+      await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]缩放图片失败:${(error as Error).message}`,
+        `[${Version.Plugin_Name}]缩放图片失败:${(error as Error).message}`,
       )
     }
   },
@@ -185,7 +170,8 @@ export const crop = karin.command(
         )
       }
 
-      const image_info = imageInfo(image_buffer as Buffer)
+      const img = Image.fromBytes(image_buffer)
+      const image_info = img.info()
       let left: number, top: number, right: number, bottom: number
 
       if (cropParam.includes(',')) {
@@ -221,12 +207,12 @@ export const crop = karin.command(
           '请输入正确的裁剪格式 ,如:[0,0,100,100],[100x100],[2:1]',
         )
       }
-      const result = imageCrop(image_buffer as Buffer, left, top, right, bottom)
-      await e.reply([segment.image(`base64://${result.toString('base64')}`)])
+      const result = img.crop(left, top, right, bottom).toBase64()
+      await e.reply([segment.image(`base64://${result}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]裁剪图片失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]裁剪图片失败: ${(error as Error).message}`,
       )
     }
   },
@@ -247,12 +233,12 @@ export const grayscale = karin.command(
       if (!image_buffer) {
         return await e.reply('请发送图片', { reply: true })
       }
-      const reslut = imageGrayscale(image_buffer as Buffer)
-      await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+      const reslut = Image.fromBytes(image_buffer).grayscale().toBase64()
+      await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]灰度化图片失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]灰度化图片失败: ${(error as Error).message}`,
       )
     }
   },
@@ -273,15 +259,12 @@ export const mirage = karin.command(
       if (!image_arr) {
         return await e.reply('未提供图片或图片数量不为2', { reply: true })
       }
-      const reslut = imageMirage(
-        image_arr[0].image as Buffer,
-        image_arr[1].image as Buffer,
-      )
-      await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+      const reslut = Image.fromBytes(image_arr[0].image).mirage(Image.fromBytes(image_arr[1].image)).toBase64()
+      await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]制作幻影坦克图片失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]制作幻影坦克图片失败: ${(error as Error).message}`,
       )
     }
   },
@@ -302,12 +285,12 @@ export const invert = karin.command(
       if (!image_buffer) {
         return await e.reply('请发送图片', { reply: true })
       }
-      const reslut = imageInvert(image_buffer as Buffer)
-      await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+      const reslut = Image.fromBytes(image_buffer).invert().toBase64()
+      await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]反色图片失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]反色图片失败: ${(error as Error).message}`,
       )
     }
   },
@@ -338,12 +321,30 @@ export const color_mask = karin.command(
       if (!rgbRegex.test(color) && !hexColorRegex.test(color)) {
         return await e.reply('颜色格式无效, 请输入标准的RGB格式(如: 255,0,0)')
       }
-      const reslut = imageColorMask(image_buffer as Buffer, color)
-      await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+
+      let rgb: Rgb
+      const rgbMatch = color.match(/^(\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})$/)
+      if (rgbMatch) {
+        rgb = {
+          r: parseInt(rgbMatch[1]),
+          g: parseInt(rgbMatch[2]),
+          b: parseInt(rgbMatch[3]),
+        }
+      } else {
+        const hex = color.replace('#', '')
+        rgb = {
+          r: parseInt(hex.substring(0, 2), 16),
+          g: parseInt(hex.substring(2, 4), 16),
+          b: parseInt(hex.substring(4, 6), 16),
+        }
+      }
+
+      const reslut = Image.fromBytes(image_buffer).colorMask(rgb).toBase64()
+      await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]颜色滤镜图片失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]颜色滤镜图片失败: ${(error as Error).message}`,
       )
     }
   },
@@ -384,7 +385,7 @@ export const image_matting = karin.command(
         await e.bot.sendForwardMsg(e.contact, forWordMsg, {
           news: [{ text: '图片抠图' }],
           prompt: '图片抠图',
-          summary: Version.Plugin_AliasName,
+          summary: Version.Plugin_Name,
           source: '图片抠图',
         })
       } else {
@@ -393,7 +394,7 @@ export const image_matting = karin.command(
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]图片抠图失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]图片抠图失败: ${(error as Error).message}`,
       )
     }
   },
@@ -412,13 +413,13 @@ export const merge_horizontal = karin.command(
       if (!images || images.length < 2) {
         return await e.reply('请发送至少两张图片进行合并', { reply: true })
       }
-      const image_buffers = await Promise.all(images.map((img) => img.image))
-      const reslut = imageMerge(image_buffers as Buffer[], MergeMode.Horizontal)
-      await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+      const imageObjects = images.map((img) => Image.fromBytes(img.image))
+      const reslut = imageObjects[0].merge(imageObjects.slice(1), MergeMode.Horizontal).toBase64()
+      await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]水平拼接图片失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]水平拼接图片失败: ${(error as Error).message}`,
       )
     }
   },
@@ -437,13 +438,13 @@ export const merge_vertical = karin.command(
       if (!images || images.length < 2) {
         return await e.reply('请发送至少两张图片进行垂直拼接', { reply: true })
       }
-      const image_buffers = await Promise.all(images.map((img) => img.image))
-      const reslut = imageMerge(image_buffers as Buffer[], MergeMode.Vertical)
-      await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+      const imageObjects = images.map((img) => Image.fromBytes(img.image))
+      const reslut = imageObjects[0].merge(imageObjects.slice(1), MergeMode.Vertical).toBase64()
+      await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]垂直拼接图片失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]垂直拼接图片失败: ${(error as Error).message}`,
       )
     }
   },
@@ -464,11 +465,9 @@ export const gif_split = karin.command(
       if (!image_buffer) {
         return await e.reply('请发送图片', { reply: true })
       }
-      const reslut = gifSplit(image_buffer as Buffer)
+      const reslut = Image.fromBytes(image_buffer).split()
 
-      const images = await Promise.all(
-        reslut.map((imgs) => imgs.toString('base64')),
-      )
+      const images = reslut.map((img) => img.toBase64())
       const zip = new AdmZip()
       images.forEach((img, index) => {
         zip.addFile(`image_${index}.png`, Buffer.from(img, 'base64'))
@@ -584,7 +583,7 @@ export const gif_split = karin.command(
       await e.bot.sendForwardMsg(e.contact, forWordMsg, {
         news: [{ text: 'GIF分解' }],
         prompt: 'GIF分解',
-        summary: Version.Plugin_AliasName,
+        summary: Version.Plugin_Name,
         source: 'GIF分解',
       })
     } catch (error) {
@@ -608,13 +607,13 @@ export const gif_merge = karin.command(
       if (!images || images.length < 2) {
         return await e.reply('请发送至少两张图片进行拼接', { reply: true })
       }
-      const image_buffers = await Promise.all(images.map((img) => img.image))
-      const reslut = gifMerge(image_buffers as Buffer[], Number(duration))
-      await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+      const imageObjects = images.map((img) => Image.fromBytes(img.image))
+      const reslut = imageObjects[0].mergeGif(imageObjects.slice(1), Number(duration)).toBase64()
+      await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]gif拼接图片失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]gif拼接图片失败: ${(error as Error).message}`,
       )
     }
   },
@@ -635,12 +634,12 @@ export const gif_reverse = karin.command(
       if (!image_buffer) {
         return await e.reply('请发送图片', { reply: true })
       }
-      const reslut = gifReverse(image_buffer as Buffer)
-      await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+      const reslut = Image.fromBytes(image_buffer).reverse().toBase64()
+      await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]gif反转图片失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]gif反转图片失败: ${(error as Error).message}`,
       )
     }
   },
@@ -668,7 +667,8 @@ export const gif_change_duration = karin.command(
           { reply: true },
         )
       }
-      const image_info = imageInfo(image_buffer as Buffer)
+      const img = Image.fromBytes(image_buffer)
+      const image_info = img.info()
       if (!image_info.isMultiFrame) {
         return await e.reply('该图片不是动图,无法进行变速操作', { reply: true })
       }
@@ -708,12 +708,12 @@ export const gif_change_duration = karin.command(
         ])
       }
 
-      const reslut = gifChangeDuration(image_buffer as Buffer, duration)
-      await e.reply([segment.image(`base64://${reslut.toString('base64')}`)])
+      const reslut = img.changeDuration(duration).toBase64()
+      await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
-        `[${Version.Plugin_AliasName}]GIF变速失败: ${(error as Error).message}`,
+        `[${Version.Plugin_Name}]GIF变速失败: ${(error as Error).message}`,
       )
     }
   },
