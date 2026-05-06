@@ -1,5 +1,12 @@
 # 变更日志
 
+## [1.4.4](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.4.3...v1.4.4) (2026-05-06)
+
+
+### 🐛 错误修复
+
+* package.json ([5b4f40f](https://github.com/CandriaJS/karin-plugin-imagetools/commit/5b4f40f621d83eba86bdd729eec51bb388495889))
+
 ## [1.4.3](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.4.2...v1.4.3) (2026-05-06)
 
 
