@@ -1,0 +1,18 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"ignorePatterns": [],
+	"useTabs": true,
+	"singleQuote": true,
+	"jsxSingleQuote": true,
+	"semi": false,
+	"sortImports": {
+		"newlinesBetween": true,
+		"partitionByComment": true
+	},
+	"sortPackageJson": {
+		"sortScripts": true
+	},
+	"sortTailwindcss": {
+		"stylesheet": "./src/styles/global.css"
+	}
+}
