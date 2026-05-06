@@ -1,6 +1,6 @@
 import karin, { Message, segment } from 'node-karin'
 import { Render } from '@/common'
-import type { HelpGroup } from '@puniyu/component'
+import type { HelpGroup } from '@puniyu/lumio'
 import { Version } from '@/root'
 import fs from 'node:fs'
 
@@ -65,9 +65,9 @@ export const help = karin.command(
     const img = await Render.help({
       title: "柠糖图片操作",
       theme: {
-        backgroundImage: bg,
+        background: { type: 'Image', field0: bg },
       },
-      list: helpList,
+      groups: helpList,
     })
 
     await e.reply(segment.image(`base64://${img.toString('base64')}`))

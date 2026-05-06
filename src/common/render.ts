@@ -1,4 +1,4 @@
-import * as component from '@puniyu/component'
+import * as component from '@puniyu/lumio'
 
 
 const Render = {
