@@ -8,7 +8,7 @@ export const help = karin.command(
   /^#?(?:(?:柠糖)(?:图片操作|imagetools))(?:命令|帮助|菜单|help|说明|功能|指令|使用说明)$/i,
   async (e: Message) => {
     const imageIcon = await fs.promises.readFile(
-      `${Version.Plugin_Path}/resources/icons/image.png`,
+      `${Version.Plugin_Path}/resources/icons/image.svg`,
     )
     const List: HelpGroup = {
       name: '常用操作',
@@ -51,7 +51,7 @@ export const help = karin.command(
 
     if (e.isMaster) {
       const updateIcon = await fs.promises.readFile(
-        `${Version.Plugin_Path}/resources/icons/update.png`,
+        `${Version.Plugin_Path}/resources/icons/update.svg`,
       )
       helpList.push({
         name: '管理命令',
