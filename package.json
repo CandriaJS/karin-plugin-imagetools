@@ -40,7 +40,7 @@
   "dependencies": {
     "@gradio/client": "^2.0.0",
     "@puniyu/lumio": "^0.1.2",
-    "@puniyu/piccy": "^0.5.1",
+    "@puniyu/piccy": "^0.6.0",
     "adm-zip": "^0.5.16"
   },
   "devDependencies": {
@@ -50,7 +50,7 @@
     "cross-env": "^7.0.3",
     "icqq": "^0.6.10",
     "node-karin": "^1.12.2",
-    "oxfmt": "^0.48.0",
+    "oxfmt": "^0.57.0",
     "oxlint": "^1.32.0",
     "tsc-alias": "1.8.13",
     "tsdown": "^0.17.2",
