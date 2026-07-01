@@ -1,5 +1,17 @@
 # 变更日志
 
+## [1.4.5](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.4.4...v1.4.5) (2026-07-01)
+
+
+### 🐛 错误修复
+
+* 修复gif处理不符合预期 ([06397dd](https://github.com/CandriaJS/karin-plugin-imagetools/commit/06397dd35574c40bdd04a8d177674c6be89fca97))
+
+
+### 🔧 其他更新
+
+* 更新piccy ([06397dd](https://github.com/CandriaJS/karin-plugin-imagetools/commit/06397dd35574c40bdd04a8d177674c6be89fca97))
+
 ## [1.4.4](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.4.3...v1.4.4) (2026-06-29)
 
 
