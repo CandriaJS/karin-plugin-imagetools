@@ -1,5 +1,12 @@
 # 变更日志
 
+## [1.4.7](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.4.6...v1.4.7) (2026-07-02)
+
+
+### 🐛 错误修复
+
+* 修复速率计算 ([8416ec6](https://github.com/CandriaJS/karin-plugin-imagetools/commit/8416ec6394e6170e7585134417d4b61b78c934f9))
+
 ## [1.4.6](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.4.5...v1.4.6) (2026-07-02)
 
 
