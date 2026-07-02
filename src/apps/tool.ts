@@ -3,6 +3,7 @@ import path from 'node:path'
 import {
   FlipMode,
   Image,
+  ImageFormat,
   MergeMode,
   Rgb,
 } from '@puniyu/piccy'
@@ -608,7 +609,7 @@ export const gif_merge = karin.command(
         return await e.reply('请发送至少两张图片进行拼接', { reply: true })
       }
       const imageObjects = images.map((img) => Image.fromBytes(img.image))
-      const reslut = imageObjects[0].mergeGif(imageObjects.slice(1), Number(duration)).toBase64()
+      const reslut = imageObjects[0].mergeGif(imageObjects.slice(1), Number(duration)).toBase64(ImageFormat.Gif)
       await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
@@ -634,7 +635,7 @@ export const gif_reverse = karin.command(
       if (!image_buffer) {
         return await e.reply('请发送图片', { reply: true })
       }
-      const reslut = Image.fromBytes(image_buffer).reverse().toBase64()
+      const reslut = Image.fromBytes(image_buffer).reverse().toBase64(ImageFormat.Gif)
       await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
@@ -708,7 +709,7 @@ export const gif_change_duration = karin.command(
         ])
       }
 
-      const reslut = img.changeDuration(duration).toBase64()
+      const reslut = img.changeDuration(duration).toBase64(ImageFormat.Gif)
       await e.reply([segment.image(`base64://${reslut}`)])
     } catch (error) {
       logger.error(error)
