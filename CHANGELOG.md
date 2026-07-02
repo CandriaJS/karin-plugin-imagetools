@@ -1,5 +1,12 @@
 # 变更日志
 
+## [1.4.6](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.4.5...v1.4.6) (2026-07-02)
+
+
+### 🐛 错误修复
+
+* 指定处理gif为gif格式 ([140c833](https://github.com/CandriaJS/karin-plugin-imagetools/commit/140c833483a73eeeee64cdd919e4e46b0fc66dea))
+
 ## [1.4.5](https://github.com/CandriaJS/karin-plugin-imagetools/compare/v1.4.4...v1.4.5) (2026-07-01)
 
 
