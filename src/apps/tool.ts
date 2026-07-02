@@ -680,28 +680,26 @@ export const gif_change_duration = karin.command(
       const speed_match = param.match(/(\d{0,3}\.?\d{1,3})(?:x|倍速?)$/i)
       const percent_match = param.match(/(\d{0,3}\.?\d{1,3})%$/)
 
+      const base_duration = image_info.averageDuration! / 1000
+
       if (fps_match) {
         duration = 1 / parseFloat(fps_match[1])
       } else if (time_match) {
         duration = parseFloat(time_match[1])
+      } else if (speed_match) {
+        duration = base_duration / parseFloat(speed_match[1])
+      } else if (percent_match) {
+        duration = base_duration / (parseFloat(percent_match[1]) / 100)
       } else {
-        duration = image_info.averageDuration!
-
-        if (speed_match) {
-          duration /= parseFloat(speed_match[1])
-        } else if (percent_match) {
-          duration = duration * (100 / parseFloat(percent_match[1]))
-        } else {
-          return await e.reply(
-            '请使用正确的倍率格式,如:[0.5x],[50%],[20FPS],[0.05s]',
-            { reply: true },
-          )
-        }
+        return await e.reply(
+          '请使用正确的倍率格式,如:[0.5x],[50%],[20FPS],[0.05s]',
+          { reply: true },
+        )
       }
 
       if (duration < 0.02) {
         return await e.reply([
-          segment.text('帧间隔必须大于 0.02 s(小于等于 50 FPS),\n'),
+          segment.text('帧间隔必须大于 0.02 s (小于等于 50 FPS),\n'),
           segment.text('超过该限制可能会导致 GIF 显示速度不正常.\n'),
           segment.text(
             `当前帧间隔为 ${duration.toFixed(3)} s (${(1 / duration).toFixed(1)} FPS)`,
@@ -709,8 +707,9 @@ export const gif_change_duration = karin.command(
         ])
       }
 
-      const reslut = img.changeDuration(duration).toBase64(ImageFormat.Gif)
-      await e.reply([segment.image(`base64://${reslut}`)])
+      console.log(duration)
+      const reslut = img.changeDuration(duration)
+      await e.reply([segment.image(`base64://${reslut.toBase64(ImageFormat.Gif)}`)])
     } catch (error) {
       logger.error(error)
       await e.reply(
